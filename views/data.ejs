@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Display</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .navbar {
+            background-color: #343a40;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-brand,
+        .nav-link {
+            color: #ffffff !important;
+            /* White text for better contrast */
+        }
+
+        .nav-link:hover {
+            color: #ff9100 !important;
+            /* Hover color */
+            transition: color 0.3s;
+            /* Smooth transition for hover effect */
+        }
+
+        .table {
+            margin: 20px auto;
+            width: 95%;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 0.5rem;
+            overflow: hidden;
+        }
+
+        th,
+        td {
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        th {
+            background-color: #343a40;
+            color: white;
+        }
+
+        img {
+            width: 50px;
+            height: auto;
+        }
+
+        .container {
+            padding: 20px;
+            background-color: white;
+            border-radius: 0.5rem;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            padding: 10px;
+            background-color: #343a40;
+            color: white;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1 class="text-center md-5"> Order List </h1>
+    <div class="container">
+        <h2 class="text-center">User Data</h2>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Website Name</th>
+                    <th>Website Logo</th>
+                    <th>Website Color</th>
+                    <th>Phone Number</th>
+                    <th>Email</th>
+                    <th>Address</th>
+                    <th>Additional Info</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% users.forEach(function(user) { %>
+                    <tr>
+                        <td>
+                            <%= user.websiteName %>
+                        </td>
+                        <td><img src="<%= user.websiteLogo %>" alt="Logo"></td>
+                        <td>
+                            <%= user.websiteColor %>
+                        </td>
+                        <td>
+                            <%= user.phoneNumber %>
+                        </td>
+                        <td>
+                            <%= user.email %>
+                        </td>
+                        <td>
+                            <%= user.address %>
+                        </td>
+                        <td>
+                            <%= user.additionalInfo %>
+                        </td>
+                    </tr>
+                    <% }); %>
+            </tbody>
+        </table>
+    </div>
+
+    <footer>
+        <p>&copy; <span id="currentYear"></span> Shatadhru. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        // Update current year in footer
+        document.getElementById("currentYear").textContent = new Date().getFullYear();
+    </script>
+
+</body>
+
+</html>

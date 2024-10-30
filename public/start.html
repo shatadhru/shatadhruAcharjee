@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Development Info Form</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            background-image: url(./firmbackground.jpg);
+            background-blend-mode: multiply;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            color: #fff;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding: 20px;
+        }
+
+        .form-container {
+            max-width: 700px;
+            background: rgba(82, 4, 57, 0.651);
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            padding: 30px;
+        }
+
+        .form-step {
+            display: none;
+        }
+
+        .form-step.active {
+            display: block;
+        }
+
+        .btn-pink {
+            background-color: #ff00aa;
+            color: #fff;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-pink:hover {
+            background-color: #e6008f;
+        }
+
+        .btn-pink.pulse {
+            animation: pulse 0.6s infinite;
+        }
+
+        .btn-secondary {
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background-color: #d6d6d6;
+        }
+
+        .color-picker {
+            width: 100%;
+            height: 50px;
+            border: 2px solid #ff00aa;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: border-color 0.3s ease;
+        }
+
+        .color-picker:focus {
+            border-color: #ff6699;
+            outline: none;
+        }
+
+        .slider-container {
+            position: relative;
+            margin: 20px 0;
+        }
+
+        .slider {
+            position: absolute;
+            width: 100%;
+            height: 5px;
+            background-color: #ff00aa;
+            transition: width 0.5s ease;
+        }
+
+        .slider-labels {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 5px;
+        }
+
+        h2 {
+            color: #ff00aa;
+            margin-bottom: 20px;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="form-container">
+        <h2 class="text-center">Web Development Information Form</h2>
+        <form id="multiStepForm" action="/userdata" method="POST">
+            <!-- Step 1: Basic Info -->
+            <div class="form-step active">
+                <h4>Basic Information</h4>
+                <div class="form-group">
+                    <label for="websiteName">Website Name:</label>
+                    <input type="text" class="form-control" id="websiteName" name="websiteName" required>
+                </div>
+                <div class="form-group">
+                    <label for="websiteLogo">Website Logo (URL):</label>
+                    <input type="text" class="form-control" id="websiteLogo" name="websiteLogo" required>
+                </div>
+                <div class="form-group">
+                    <label for="websiteColor">Select Website Color:</label>
+                    <input type="color" class="form-control" id="websiteColor" name="websiteColor" required>
+                </div>
+                <button type="button" class="btn btn-pink next-step">Next</button>
+            </div>
+
+            <!-- Step 2: Color Format -->
+            <div class="form-step">
+                <h4>Select Color Formats</h4>
+                <div class="row">
+                    <div class="col-md-6 form-group">
+                        <label for="color1">Color Format 1:</label>
+                        <input type="color" class="color-picker" id="color1" name="color1">
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <label for="color2">Color Format 2:</label>
+                        <input type="color" class="color-picker" id="color2" name="color2">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 form-group">
+                        <label for="color3">Color Format 3:</label>
+                        <input type="color" class="color-picker" id="color3" name="color3">
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <label for="color4">Color Format 4:</label>
+                        <input type="color" class="color-picker" id="color4" name="color4">
+                    </div>
+                </div>
+                <button type="button" class="btn btn-pink next-step">Next</button>
+                <button type="button" class="btn btn-secondary prev-step">Previous</button>
+            </div>
+
+            <!-- Step 3: Readymade Design -->
+            <div class="form-step">
+                <h4>Readymade Designs Available</h4>
+                <div class="form-group">
+                    <label for="readymade">Choose Readymade Design:</label>
+                    <select class="form-control" id="readymade" name="readymade">
+                        <option value="">Select...</option>
+                        <option value="design1">Design 1</option>
+                        <option value="design2">Design 2</option>
+                        <option value="design3">Design 3</option>
+                    </select>
+                </div>
+                <button type="button" class="btn btn-pink next-step">Next</button>
+                <button type="button" class="btn btn-secondary prev-step">Previous</button>
+            </div>
+
+            <!-- Step 4: Contact Information -->
+            <div class="form-step">
+                <h4>Contact Information</h4>
+                <div class="form-group">
+                    <label for="phoneNumber">Phone Number:</label>
+                    <input type="tel" class="form-control" id="phoneNumber" name="phoneNumber" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" class="form-control" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="address">Address:</label>
+                    <input type="text" class="form-control" id="address" name="address" required>
+                </div>
+                <button type="button" class="btn btn-pink next-step">Next</button>
+                <button type="button" class="btn btn-secondary prev-step">Previous</button>
+            </div>
+
+            <!-- Step 5: Additional Info -->
+            <div class="form-step">
+                <h4>Additional Information</h4>
+                <div class="form-group">
+                    <label for="additionalInfo">Any Additional Info:</label>
+                    <textarea class="form-control" id="additionalInfo" name="additionalInfo" rows="3"></textarea>
+                </div>
+                <button type="submit" class="btn btn-pink">Submit</button>
+                <button type="button" class="btn btn-secondary prev-step">Previous</button>
+            </div>
+        </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.next-step').click(function () {
+                var currentStep = $(this).closest('.form-step');
+                var nextStep = currentStep.next('.form-step');
+                currentStep.removeClass('active');
+                nextStep.addClass('active');
+                $(this).addClass('pulse');
+                setTimeout(() => {
+                    $(this).removeClass('pulse');
+                }, 600);
+            });
+
+            $('.prev-step').click(function () {
+                var currentStep = $(this).closest('.form-step');
+                var prevStep = currentStep.prev('.form-step');
+                currentStep.removeClass('active');
+                prevStep.addClass('active');
+                $(this).addClass('pulse');
+                setTimeout(() => {
+                    $(this).removeClass('pulse');
+                }, 600);
+            });
+
+            // Submit form data using AJAX
+            $('#multiStepForm').on('submit', function (e) {
+                e.preventDefault();
+                const formData = $(this).serialize(); // Get form data in URL-encoded format
+
+                $.ajax({
+                    type: "POST",
+                    url: "/userdata",
+                    data: formData,
+                    success: function (response) {
+                        alert("Form submitted successfully!");
+                    },
+                    error: function (error) {
+                        alert("An error occurred while submitting the form.");
+                    }
+                });
+            });
+        });
+
+
+        // Submit form data using AJAX
+        $('#multiStepForm').on('submit', function (e) {
+            e.preventDefault();
+            const formData = $(this).serialize(); // Get form data in URL-encoded format
+
+            $.ajax({
+                type: "POST",
+                url: "/userdata",
+                data: formData,
+                success: function (response) {
+                    alert("Form submitted successfully!");
+                    console.log(response); // Log server response for debugging
+                },
+                error: function (error) {
+                    alert("An error occurred while submitting the form.");
+                    console.error("Submission error:", error); // Log error details
+                }
+            });
+        });
+
+    </script>
+
+</body>
+
+</html>
