@@ -24,6 +24,7 @@
             position: fixed;
             width: 100%;
             z-index: 1000;
+            height: 80px;
         }
 
         .blur {
@@ -390,6 +391,8 @@
         /* Styles for Collapsed Navbar */
         .navbar-collapse {
 
+
+
             /* Light background for dropdown */
             border-radius: 5px;
             /* Rounded corners for menu */
@@ -429,6 +432,14 @@
                 /* Fade in animation */
                 animation-delay: calc(0.1s * var(--i));
                 /* Delay for staggered effect */
+            }
+
+            .navbar-collapse {
+
+                width: 200px !important;
+                height: auto;
+                padding: 20px 25px;
+                background-color: rgba(0, 0, 0, 0.753);
             }
         }
 
@@ -511,6 +522,122 @@
                 /* Final position */
             }
         }
+
+
+        .section-features {
+            width: 400px;
+            height: 200px;
+
+        }
+
+        .user-section1 {
+            border-radius: 10px;
+            display: flex;
+            height: 200px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .user-section1 img {
+            max-width: 200px;
+        }
+
+        .user-section2 {
+            border-radius: 10px;
+        }
+
+        .user-section3 {
+            border-radius: 10px;
+        }
+
+        .fetures {
+            background: #000000;
+        }
+
+        .texth4 {
+            color: black;
+        }
+
+
+        .my-section {
+            background-color: #000;
+            color: #ff69b4;
+            /* Pink color for gradient */
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            flex-direction: column;
+        }
+
+
+        /* Image stacking and rotation */
+        .book-stack {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .book-page {
+            position: absolute;
+            width: 350px;
+            height: auto;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .book-page:nth-child(1) {
+            transform: rotate(-25deg);
+            z-index: 1;
+        }
+
+        .book-page:nth-child(2) {
+            transform: rotate(0deg);
+            z-index: 2;
+            box-shadow: 0px 0px 10px rgba(255, 105, 180, 0.5);
+        }
+
+        .book-page:nth-child(3) {
+            transform: rotate(25deg);
+            z-index: 3;
+            box-shadow: 0px 0px 15px rgba(255, 20, 147, 0.5);
+        }
+
+        /* Mobile-friendly adjustments */
+        @media (max-width: 768px) {
+            .book-page {
+                width: 200px;
+                /* Smaller image size on mobile */
+            }
+
+            .book-page:nth-child(1) {
+                transform: rotate(-15deg);
+                /* Reduced rotation on mobile */
+            }
+
+            .book-page:nth-child(2) {
+                transform: rotate(0deg);
+                box-shadow: 0px 0px 8px rgba(255, 105, 180, 0.5);
+            }
+
+            .book-page:nth-child(3) {
+                transform: rotate(15deg);
+                box-shadow: 0px 0px 10px rgba(255, 20, 147, 0.5);
+            }
+        }
+
+        /* CSS for white background with dark lines */
+        .navbar-toggler {
+            background-color: #f2f2f2;
+            /* Button background color */
+            border-color: white;
+            /* Button border color */
+        }
+
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='rgba%280, 0, 0, 1%29' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+        }
     </style>
 </head>
 
@@ -520,7 +647,7 @@
         <div class="container">
             <nav class="navbar navbar-expand-lg navbar-light">
                 <a class="navbar-brand" href="#">Shatadhru Acharjee</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                <button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -660,6 +787,46 @@
         </div>
     </section>
 
+    <!-- Features Section -->
+    <!-- Features Section -->
+
+    <section>
+        <h1 class="neon text-center">Explore Premium Features</h1>
+
+        <div class="d-flex flex-wrap justify-content-center mx-3 my-5 features">
+
+            <div class="user-section1 section-features col-12 col-md-3 mx-3 mb-4 p-3 bg-white d-flex flex-column align-items-center clickable-div"
+                id="redirectDiv">
+                <img src="weather.png" class="mt-4" alt="Weather Image" style="width: 100px; height: auto;">
+                <h4 class="texth4 text-center mb-4">Browse Our Premium Picture Collection</h4>
+            </div>
+
+            <div
+                class="user-section1 section-features col-12 col-md-3 mx-3 mb-4 p-3 bg-white d-flex flex-column align-items-center">
+                <img src="weather.png" class="mt-4" alt="Weather Image" style="width: 100px; height: auto;">
+                <h4 class="texth4 text-center mb-4">Check Your Weather</h4>
+            </div>
+
+            <div
+                class="user-section1 section-features col-12 col-md-3 mx-3 mb-4 p-3 bg-white d-flex flex-column align-items-center">
+                <img src="weather.png" class="mt-4" alt="Weather Image" style="width: 100px; height: auto;">
+                <h4 class="texth4 text-center mb-4">Check Your Weather</h4>
+            </div>
+
+        </div>
+    </section>
+
+
+    <section class="my-section">
+
+        <div class="book-stack">
+            <img src="Node JS Book_page-0003.jpg" alt="Book Page 1" class="book-page">
+            <img src="Node JS Book_page-0002.jpg" alt="Book Page 2" class="book-page">
+            <img src="Node JS Book_page-0001.jpg" alt="Book Page 3" class="book-page">
+        </div>
+    </section>
+
+
     <!-- Customer Satisfaction Section -->
     <section class="customer-satisfaction section bg-dark">
         <div class="container text-center">
@@ -729,30 +896,31 @@
     </section>
 
 
-
     <!-- Contact Section -->
     <section class="section" id="contact">
         <div class="container text-center">
             <h2>Contact Me</h2>
-            <form>
+            <form action="/contactdata" method="POST">
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                        <input type="text" class="form-control" placeholder="Your Name" required>
+                        <input type="text" name="name" class="form-control" placeholder="Your Name" required>
                     </div>
                     <div class="form-group col-md-6">
-                        <input type="email" class="form-control" placeholder="Your Email" required>
+                        <input type="email" name="email" class="form-control" placeholder="Your Email" required>
                     </div>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Your Phone" required>
+                    <input type="text" name="phone" class="form-control" placeholder="Your Phone" required>
                 </div>
                 <div class="form-group">
-                    <textarea class="form-control" rows="5" placeholder="Your Message" required></textarea>
+                    <textarea name="message" class="form-control" rows="5" placeholder="Your Message"
+                        required></textarea>
                 </div>
                 <button type="submit" class="btn btn-warning btn-lg">Send Message</button>
             </form>
         </div>
     </section>
+
 
     <!-- Footer -->
     <footer class="footer">
@@ -773,6 +941,11 @@
                 header.classList.remove('blur'); // Remove blur class
             }
         });
+
+        document.getElementById("redirectDiv").onclick = function () {
+            window.location.href = "http://localhost:3000/picture-store";
+        };
+
     </script>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <title>Shatadhru Picture Store</title>
+</head>
+
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Shatadhru Picture Store</h1>
+        <div class="row justify-content-center mt-4">
+            <div class="col-md-6">
+                <form id="searchForm" action="#" method="get">
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="searchInput" placeholder="Search for pictures..."
+                            required>
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="submit">Search</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('searchForm').onsubmit = function (e) {
+            e.preventDefault(); // Prevent the default form submission
+            const searchText = document.getElementById('searchInput').value;
+            // Redirect to the search page with the query
+            window.location.href = `http://localhost:3000/search/${encodeURIComponent(searchText)}`;
+        };
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

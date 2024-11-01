@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Details</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Custom premium color styling */
+        .premium-bg {
+            background-color: #ff9100;
+            color: #ffffff;
+        }
+
+        .table-header {
+            color: #ffffff;
+            background-color: #020202;
+        }
+
+        .btn-premium {
+            background-color: #ff9100;
+            color: #ffffff;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 576px) {
+            .table-responsive {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-light">
+
+    <div class="container mt-5">
+        <h1 class="text-center premium-bg py-3">Contact Details</h1>
+
+        <!-- Search and Filter Section -->
+        <div class="row mb-3">
+            <div class="col-md-6 mb-2 d-flex">
+                <input type="text" id="searchInput" class="form-control" placeholder="Search by Name or Email"
+                    aria-label="Search">
+                <button class="btn btn-premium ml-2" onclick="filterContacts()">Search</button>
+            </div>
+            <div class="col-md-6">
+                <select id="filterOption" class="form-control" onchange="filterContacts()">
+                    <option value="">All Contacts</option>
+                    <option value="hasPhone">Has Phone Number</option>
+                    <option value="noPhone">No Phone Number</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Contacts Table -->
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover">
+                <thead class="table-header">
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Message</th>
+                    </tr>
+                </thead>
+                <tbody id="contactsTable">
+                    <% contacts.forEach(contact=> { %>
+                        <tr>
+                            <td>
+                                <%= contact.name %>
+                            </td>
+                            <td>
+                                <%= contact.email %>
+                            </td>
+                            <td>
+                                <%= contact.phone ? contact.phone : 'N/A' %>
+                            </td>
+                            <td>
+                                <%= contact.message %>
+                            </td>
+                        </tr>
+                        <% }) %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Custom JavaScript for Search and Filter Functionality -->
+    <script>
+        function filterContacts() {
+            const searchInput = document.getElementById('searchInput').value.toLowerCase();
+            const filterOption = document.getElementById('filterOption').value;
+            const tableRows = document.querySelectorAll('#contactsTable tr');
+
+            tableRows.forEach(row => {
+                const name = row.cells[0].textContent.toLowerCase();
+                const email = row.cells[1].textContent.toLowerCase();
+                const phone = row.cells[2].textContent.toLowerCase();
+
+                let isVisible = true;
+
+                // Search filter
+                if (searchInput && !name.includes(searchInput) && !email.includes(searchInput)) {
+                    isVisible = false;
+                }
+
+                // Phone filter
+                if (filterOption === 'hasPhone' && !phone) {
+                    isVisible = false;
+                } else if (filterOption === 'noPhone' && phone) {
+                    isVisible = false;
+                }
+
+                row.style.display = isVisible ? '' : 'none';
+            });
+        }
+    </script>
+
+</body>
+
+</html>
