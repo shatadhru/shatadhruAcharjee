@@ -2,6 +2,8 @@ const express = require("express");
 const path = require("path");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
+const authRoutes = require("./routes/authRoutes");
+
 require("dotenv").config(); // Load environment variables
 
 const User = require("./models/db"); // Ensure you have the User model defined
@@ -10,23 +12,22 @@ const Contact = require("./models/contact"); // Ensure you have the Contact mode
 const app = express();
 const PORT = 3000;
 
-
 // Middleware
 app.use(express.static(path.join(__dirname, "public")));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(express.json()); // Parses JSON bodies in requests
 
 // Set EJS as the templating engine
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views")); // Ensure you have a views directory
-
 
 // Route for the home page
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "index.html")); // Ensure you have index.html in public
 });
 
-
+app.use("/", authRoutes);
 // Route to handle form submission for user data
 app.post("/userdata", async (req, res) => {
   try {
@@ -77,7 +78,7 @@ app.post("/contactdata", async (req, res) => {
   try {
     // Save contact data to the database
     await contactEntry.save();
-    res.send("<h1>Successfully Saved</h1>");
+    res.redirect("/contact_successfull"); // Redirect to contact success page
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Failed to save contact information." });
@@ -110,5 +111,12 @@ mongoose
     process.exit(1); // Exit process on DB failure
   });
 
+app.get("/contact_successfull", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "contact.html")); // Ensure you have index.html in public
+});
 
-module.exports = app ;
+app.get("/login", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "login.html"));
+});
+
+module.exports = app;
